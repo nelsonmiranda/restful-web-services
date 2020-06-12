@@ -24,4 +24,17 @@ public class TodoService {
 		return todos;
 	}
 	
+	public List<Todo> findAllByUsername(String username){
+		
+		List<Todo> listTodos = new ArrayList<Todo>();
+		
+		todos.forEach((todo)->{
+			if(todo.getUsername().equals(username)) {
+				listTodos.add(todo);
+			}
+		});
+		
+		return listTodos;
+	}
+	
 }
