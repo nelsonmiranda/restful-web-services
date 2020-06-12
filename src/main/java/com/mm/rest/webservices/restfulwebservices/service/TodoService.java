@@ -10,7 +10,7 @@ import com.mm.rest.webservices.restfulwebservices.entity.Todo;
 
 @Service
 public class TodoService {
-	
+
 	private static List<Todo> todos = new ArrayList<Todo>();
 	private static int idCounter = 0;
 
@@ -19,22 +19,45 @@ public class TodoService {
 		todos.add(new Todo(++idCounter, "in28minutes", "Learn about Microservices", new Date(), false));
 		todos.add(new Todo(++idCounter, "in28minutes", "Learn about Angular", new Date(), false));
 	}
-	
-	public List<Todo> findAll(){
+
+	public List<Todo> findAll() {
 		return todos;
 	}
-	
-	public List<Todo> findAllByUsername(String username){
-		
+
+	public List<Todo> findAllByUsername(String username) {
+
 		List<Todo> listTodos = new ArrayList<Todo>();
-		
-		todos.forEach((todo)->{
-			if(todo.getUsername().equals(username)) {
+
+		todos.forEach((todo) -> {
+			if (todo.getUsername().equals(username)) {
 				listTodos.add(todo);
 			}
 		});
-		
+
 		return listTodos;
 	}
-	
+
+	public Todo deleteById(long id) {
+		Todo todo = findById(id);
+
+		if (todo == null) {
+			return null;
+		}
+
+		if (todos.remove(todo)) {
+			return todo;
+		}
+
+		return null;
+	}
+
+	private Todo findById(long id) {
+		for (Todo todo : todos) {
+			if (todo.getId() == id) {
+				return todo;
+			}
+		}
+		return null;
+	}
+
 }
