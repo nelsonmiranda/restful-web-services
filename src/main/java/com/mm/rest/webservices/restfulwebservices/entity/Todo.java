@@ -2,12 +2,29 @@ package com.mm.rest.webservices.restfulwebservices.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Todo {
 
-	private long id;
+	@Id
+	@GeneratedValue
+	@Column(name ="id")
+	private Long id;
+	
+	@Column(name ="username")
 	private String username;
+	
+	@Column(name ="description")
 	private String description;
+	
+	@Column(name ="targetdate")
 	private Date targetDate;
+	
+	@Column(name ="done")
 	private boolean isDone;
 
 	public Todo() {
